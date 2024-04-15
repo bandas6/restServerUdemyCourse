@@ -72,7 +72,10 @@ const usuarioDelete = async(req, res) => {
     // const usuariosEliminado = await User.findByIdAndDelete(id)
 
     const usuario = await User.findByIdAndUpdate(id, {estado:false});
-
+    
+    // Datos obtenidos de el middlewar validando token 
+    const userAuth = req.userAuth
+    
     res.status(200).json({
         msg: 'delete api',
         usuario,
