@@ -2,7 +2,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-const { login } = require('../controllers/auth.controller');
+const { login, googleSingIn } = require('../controllers/auth.controller');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { elementExist } = require('../helpers/db-validators');
 
@@ -20,6 +20,14 @@ router.post('/login',
     validarCampos
 ]
 ,login );
+
+router.post('/google', 
+[
+    check('id_token', 'id_token nesesario').not().isEmpty(),
+    // check('correo').custom((correo) => elementExist(correo, 'correo', user)),
+    validarCampos
+]
+,googleSingIn );
 
 
 
