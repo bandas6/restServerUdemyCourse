@@ -1,6 +1,5 @@
 const { response } = require("express")
 
-
 const esAdminRol = ( req, res = response, next) => {
 
     if( !req.userAuth){

@@ -7,12 +7,12 @@ const esRolValido = async (rol = '') => {
     }
 }
 
-const elementExist = async (elementFind, name, User) => {
+const elementExist = async (elementFind, name, DBSchema) => {
 
-    const element = await User.findOne({ elementFind });
+    const element = await DBSchema.findOne({ elementFind });
 
     if ( element ) {
-        throw new Error(`El ${name} ya existe`);
+        throw new Error(`El ${element.nombre} ya existe`);
     }
 
 }
@@ -27,8 +27,19 @@ const userExistById = async (id, User) => {
 
 }
 
+const categorieExistById = async (id, Categorie) => {
+
+    const categorieExist = await Categorie.findById(id);
+
+    if ( !categorieExist ) {
+        throw new Error(`El id no existe ${id}`);
+    }
+
+}
+
 module.exports = {
     esRolValido,
     elementExist,
-    userExistById
+    userExistById,
+    categorieExistById
 }
